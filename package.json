@@ -1,0 +1,19 @@
+{
+  "name": "tictactoe-ai-root",
+  "version": "1.0.0",
+  "description": "Tic Tac Toe with Unbeatable Minimax AI in React",
+  "scripts": {
+    "start": "npm start --prefix tictactoe",
+    "build": "npm run build --prefix tictactoe",
+    "test": "npm test --prefix tictactoe"
+  },
+  "keywords": [
+    "react",
+    "tic-tac-toe",
+    "minimax",
+    "ai",
+    "game"
+  ],
+  "author": "Kalp Shah",
+  "license": "MIT"
+}
