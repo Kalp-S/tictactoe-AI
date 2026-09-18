@@ -17,6 +17,8 @@ jobs:
     defaults:
       run:
         working-directory: tictactoe
+    env:
+      NODE_OPTIONS: "--openssl-legacy-provider"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
