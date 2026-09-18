@@ -1,0 +1,44 @@
+name: CI / Test Suite
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: React Unit Tests & Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tictactoe
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Run React Tests
+        run: CI=true npm test -- --passWithNoTests
+
+      - name: Verify Build
+        run: npm run build
+
+  ci-success:
+    name: CI Test Suite Pass
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gate Check
+        run: echo "React tests and build succeeded."
